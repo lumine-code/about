@@ -1,0 +1,50 @@
+{
+  "name": "about",
+  "author": "lumine-code",
+  "version": "1.0.0",
+  "description": "View useful information about your Lumine installation.",
+  "keywords": [
+    "version",
+    "release-notes",
+    "credits",
+    "license",
+    "installation"
+  ],
+  "repository": "https://github.com/lumine-code/about",
+  "bugs": {
+    "url": "https://github.com/lumine-code/about/issues"
+  },
+  "license": "MIT",
+  "main": "./lib/main",
+  "engines": {
+    "lumine": "^1.0.0"
+  },
+  "scripts": {
+    "test": "lumine --test spec",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "configSchema": {
+    "showOnStartup": {
+      "title": "Show About On Startup",
+      "description": "Show the About pane when opening a new Lumine window.",
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "deserializers": {
+    "AboutView": "deserializeAboutView"
+  },
+  "dependencies": {
+    "@lumine-code/etch": "https://github.com/lumine-code/etch.git#9c74208ad932e0694cb3f7ad575e7205154dea8f"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-n": "^18.2.2",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.6"
+  }
+}
