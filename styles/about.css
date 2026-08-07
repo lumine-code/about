@@ -83,10 +83,6 @@
   width: 100%;
   max-width: 128px;
   margin: 0 auto;
-  /* lumine-square.svg itself has sharp corners -- that's the shape the app
-     icon format wants -- so round them here for display instead of asking
-     the asset to carry two different corner styles. */
-  border-radius: 20%;
   filter: drop-shadow(0 4px 12px rgb(from #000 r g b / 30%));
 }
 
