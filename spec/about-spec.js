@@ -1,3 +1,5 @@
+const AboutView = require("../lib/about-view");
+
 describe("About", () => {
   let workspaceElement;
 
@@ -41,13 +43,22 @@ describe("About", () => {
     expect(deserializedAboutView).toBeTruthy();
   });
 
-  it("uses the canonical Lumine logo", async () => {
+  it("uses the mode-appropriate Lumine logo", async () => {
     await atom.workspace.open("lumine://about");
     jasmine.attachToDOM(workspaceElement);
     const logo = workspaceElement.querySelector(".about-logo");
 
+    // `--test` forces devMode on (parse-command-line.js), so every spec run
+    // is a dev-mode run and the dev-colored mark is genuinely what's shown.
     expect(logo.tagName).toBe("IMG");
-    expect(logo.src.replace(/\\/g, "/")).toMatch(/\/resources\/app-icons\/lumine\.svg$/);
+    expect(logo.src.replace(/\\/g, "/")).toMatch(/\/resources\/app-icons\/lumine-dev\.svg$/);
+  });
+
+  it("picks the logo file for each mode, safe outranking dev", () => {
+    expect(AboutView.resolveLogoFile({ devMode: false, safeMode: false })).toBe("lumine.svg");
+    expect(AboutView.resolveLogoFile({ devMode: true, safeMode: false })).toBe("lumine-dev.svg");
+    expect(AboutView.resolveLogoFile({ devMode: false, safeMode: true })).toBe("lumine-safe.svg");
+    expect(AboutView.resolveLogoFile({ devMode: true, safeMode: true })).toBe("lumine-safe.svg");
   });
 
   describe("when the about:about-atom command is triggered", () => {
