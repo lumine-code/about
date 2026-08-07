@@ -80,9 +80,16 @@
 
 .about-logo {
   display: block;
+  box-sizing: border-box;
   width: 100%;
   max-width: 128px;
   margin: 0 auto;
+  /* lumine-raw.svg is a flat black mark meant for a light ground, but
+     .about's own background follows the active theme -- on a dark theme the
+     mark would vanish into it. The padding + white card give it one. */
+  padding: 18px;
+  background-color: #ffffff;
+  border-radius: 24px;
   filter: drop-shadow(0 4px 12px rgb(from #000 r g b / 30%));
 }
 

@@ -47,7 +47,7 @@ describe("About", () => {
     const logo = workspaceElement.querySelector(".about-logo");
 
     expect(logo.tagName).toBe("IMG");
-    expect(logo.src.replace(/\\/g, "/")).toMatch(/\/resources\/app-icons\/lumine\.svg$/);
+    expect(logo.src.replace(/\\/g, "/")).toMatch(/\/resources\/app-icons\/lumine-raw\.svg$/);
   });
 
   describe("when the about:about-atom command is triggered", () => {
