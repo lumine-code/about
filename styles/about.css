@@ -203,28 +203,12 @@
      row centres the glyph itself rather than a taller line box. */
   .icon {
     line-height: 0;
+    color: var(--text-color-subtle);
   }
 
   .icon::before {
-    /* Make these octicons look good inlined with text: hug the glyph instead
-       of the icon-contract box and center on the text. */
-    position: relative;
-    width: auto;
-    height: auto;
-    line-height: 1;
-    vertical-align: middle;
-    margin-right: 0;
     font-size: 1.5em;
-    /* Measured: lands the mark on the label's cap centre. */
     translate: 0 -0.9px;
-  }
-
-  .icon-code::before {
-    color: var(--lumine-gold);
-  }
-
-  .icon-heart::before {
-    color: var(--lumine-gold);
   }
 }
 
