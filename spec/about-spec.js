@@ -113,7 +113,7 @@ describe("About", () => {
       let aboutElement = workspaceElement.querySelector(".about");
       let versionContainer = aboutElement.querySelector(".atom");
       versionContainer.click();
-      expect(atom.clipboard.read()).toBe(atom.getVersion());
+      expect(atom.clipboard.read()).toBe(atom.app.getVersion());
     });
   });
 
