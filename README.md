@@ -15,7 +15,7 @@ To install `about` search for _about_ in the Install pane of the Lumine settings
 
 ## Commands
 
-Commands available in `atom-workspace`:
+Commands available in `lumine-workspace`:
 
 - `about:view-release-notes`: open the release notes for the current version in your browser.
 

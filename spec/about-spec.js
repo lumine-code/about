@@ -4,24 +4,24 @@ describe("About", () => {
   let workspaceElement;
 
   beforeEach(async () => {
-    workspaceElement = atom.views.getView(atom.workspace);
-    atom.config.set("about.showOnStartup", false);
-    await atom.packages.activatePackage("about");
+    workspaceElement = lumine.views.getView(lumine.workspace);
+    lumine.config.set("about.showOnStartup", false);
+    await lumine.packages.activatePackage("about");
   });
 
   describe("startup", () => {
     it("opens About by default", async () => {
-      await atom.packages.deactivatePackage("about");
-      atom.config.unset("about.showOnStartup");
+      await lumine.packages.deactivatePackage("about");
+      lumine.config.unset("about.showOnStartup");
 
-      await atom.packages.activatePackage("about");
+      await lumine.packages.activatePackage("about");
 
-      expect(atom.workspace.getActivePaneItem().getURI()).toBe("lumine://about");
+      expect(lumine.workspace.getActivePaneItem().getURI()).toBe("lumine://about");
     });
 
     it("stores the startup checkbox preference", async () => {
-      atom.config.set("about.showOnStartup", true);
-      await atom.workspace.open("lumine://about");
+      lumine.config.set("about.showOnStartup", true);
+      await lumine.workspace.open("lumine://about");
       jasmine.attachToDOM(workspaceElement);
 
       const checkbox = workspaceElement.querySelector(".about-startup .input-checkbox");
@@ -30,12 +30,12 @@ describe("About", () => {
       checkbox.checked = false;
       checkbox.dispatchEvent(new Event("change", { bubbles: true }));
 
-      expect(atom.config.get("about.showOnStartup")).toBe(false);
+      expect(lumine.config.get("about.showOnStartup")).toBe(false);
     });
   });
 
   it("deserializes correctly", () => {
-    let deserializedAboutView = atom.deserializers.deserialize({
+    let deserializedAboutView = lumine.deserializers.deserialize({
       deserializer: "AboutView",
       uri: "lumine://about",
     });
@@ -44,7 +44,7 @@ describe("About", () => {
   });
 
   it("uses the mode-appropriate Lumine logo", async () => {
-    await atom.workspace.open("lumine://about");
+    await lumine.workspace.open("lumine://about");
     jasmine.attachToDOM(workspaceElement);
     const logo = workspaceElement.querySelector(".about-logo");
 
@@ -61,7 +61,7 @@ describe("About", () => {
     expect(AboutView.resolveLogoFile({ devMode: true, safeMode: true })).toBe("lumine-safe.svg");
   });
 
-  describe("when the about:about-atom command is triggered", () => {
+  describe("when the About view is opened", () => {
     it("shows the About Lumine view", async () => {
       // Attaching the workspaceElement to the DOM is required to allow the
       // `toBeVisible()` matchers to work. Anything testing visibility or focus
@@ -70,7 +70,7 @@ describe("About", () => {
       jasmine.attachToDOM(workspaceElement);
 
       expect(workspaceElement.querySelector(".about")).not.toExist();
-      await atom.workspace.open("lumine://about");
+      await lumine.workspace.open("lumine://about");
 
       let aboutElement = workspaceElement.querySelector(".about");
       expect(aboutElement).toBeVisible();
@@ -79,26 +79,26 @@ describe("About", () => {
 
   describe("when the About view is already open in another pane", () => {
     it("activates the existing view instead of adding a duplicate", async () => {
-      const item = await atom.workspace.open("lumine://about", { split: "left" });
-      const aboutPane = atom.workspace.paneForItem(item);
+      const item = await lumine.workspace.open("lumine://about", { split: "left" });
+      const aboutPane = lumine.workspace.paneForItem(item);
       const otherPane = aboutPane.splitRight();
-      expect(atom.workspace.getActivePane()).toBe(otherPane);
+      expect(lumine.workspace.getActivePane()).toBe(otherPane);
 
-      const reopened = await atom.workspace.open("lumine://about");
+      const reopened = await lumine.workspace.open("lumine://about");
       expect(reopened).toBe(item);
-      expect(atom.workspace.getActivePane()).toBe(aboutPane);
-      expect(atom.workspace.getPaneItems().filter((i) => i === item).length).toBe(1);
+      expect(lumine.workspace.getActivePane()).toBe(aboutPane);
+      expect(lumine.workspace.getPaneItems().filter((i) => i === item).length).toBe(1);
     });
   });
 
   describe("when the About view is reopened after being destroyed", () => {
     it("creates a fresh view", async () => {
-      const item = await atom.workspace.open("lumine://about");
-      const pane = atom.workspace.paneForItem(item);
+      const item = await lumine.workspace.open("lumine://about");
+      const pane = lumine.workspace.paneForItem(item);
       pane.destroyItem(item);
       expect(item.isDestroyed()).toBe(true);
 
-      const reopened = await atom.workspace.open("lumine://about");
+      const reopened = await lumine.workspace.open("lumine://about");
       expect(reopened).not.toBe(item);
       expect(reopened.isDestroyed()).toBe(false);
       expect(reopened.getURI()).toBe("lumine://about");
@@ -107,19 +107,19 @@ describe("About", () => {
 
   describe("when the Lumine version number is clicked", () => {
     it("copies the version number to the clipboard", async () => {
-      await atom.workspace.open("lumine://about");
+      await lumine.workspace.open("lumine://about");
       jasmine.attachToDOM(workspaceElement);
 
       let aboutElement = workspaceElement.querySelector(".about");
-      let versionContainer = aboutElement.querySelector(".atom");
+      let versionContainer = aboutElement.querySelector(".lumine");
       versionContainer.click();
-      expect(atom.clipboard.read()).toBe(atom.app.getVersion());
+      expect(lumine.clipboard.read()).toBe(lumine.app.getVersion());
     });
   });
 
   describe("the additional version numbers", () => {
     it("are shown by default", async () => {
-      await atom.workspace.open("lumine://about");
+      await lumine.workspace.open("lumine://about");
       jasmine.attachToDOM(workspaceElement);
 
       let aboutElement = workspaceElement.querySelector(".about");
@@ -131,44 +131,44 @@ describe("About", () => {
 
   describe("when the Electron version number is clicked", () => {
     it("copies the version number to the clipboard", async () => {
-      await atom.workspace.open("lumine://about");
+      await lumine.workspace.open("lumine://about");
       jasmine.attachToDOM(workspaceElement);
 
       let aboutElement = workspaceElement.querySelector(".about");
       let versionContainer = aboutElement.querySelector(".electron");
       versionContainer.click();
-      expect(atom.clipboard.read()).toBe(process.versions.electron);
+      expect(lumine.clipboard.read()).toBe(process.versions.electron);
     });
   });
 
   describe("when the Chrome version number is clicked", () => {
     it("copies the version number to the clipboard", async () => {
-      await atom.workspace.open("lumine://about");
+      await lumine.workspace.open("lumine://about");
       jasmine.attachToDOM(workspaceElement);
 
       let aboutElement = workspaceElement.querySelector(".about");
       let versionContainer = aboutElement.querySelector(".chrome");
       versionContainer.click();
-      expect(atom.clipboard.read()).toBe(process.versions.chrome);
+      expect(lumine.clipboard.read()).toBe(process.versions.chrome);
     });
   });
 
   describe("when the Node version number is clicked", () => {
     it("copies the version number to the clipboard", async () => {
-      await atom.workspace.open("lumine://about");
+      await lumine.workspace.open("lumine://about");
       jasmine.attachToDOM(workspaceElement);
 
       let aboutElement = workspaceElement.querySelector(".about");
       let versionContainer = aboutElement.querySelector(".node");
       versionContainer.click();
-      expect(atom.clipboard.read()).toBe(process.version);
+      expect(lumine.clipboard.read()).toBe(process.version);
     });
   });
 
   describe("check for update appears", () => {
     it('when "lumine-updater" is enabled', async () => {
-      atom.packages.activatePackage("lumine-updater");
-      await atom.workspace.open("lumine://about");
+      lumine.packages.activatePackage("lumine-updater");
+      await lumine.workspace.open("lumine://about");
       jasmine.attachToDOM(workspaceElement);
 
       let aboutElement = workspaceElement.querySelector(".about");
