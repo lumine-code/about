@@ -113,7 +113,7 @@ describe("About", () => {
       let aboutElement = workspaceElement.querySelector(".about");
       let versionContainer = aboutElement.querySelector(".lumine");
       versionContainer.click();
-      expect(lumine.clipboard.read()).toBe(lumine.app.getVersion());
+      expect(lumine.clipboard.read()).toBe(lumine.application.getVersion());
     });
   });
 
