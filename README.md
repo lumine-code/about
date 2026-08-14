@@ -11,7 +11,7 @@ View useful information about your Lumine installation.
 
 ## Installation
 
-To install `about` search for _about_ in the Install pane of the Lumine settings or run `lumine --install lumine-code/about`.
+To install `about` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/about`.
 
 ## Commands
 
