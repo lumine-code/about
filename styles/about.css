@@ -54,7 +54,7 @@
 
 .about-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
 
   .icon::before {
     margin-right: 0;
