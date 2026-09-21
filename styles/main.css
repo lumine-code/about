@@ -76,6 +76,10 @@
   &:hover {
     transform: scale(1.03);
   }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 .about-logo {

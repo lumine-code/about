@@ -43,6 +43,19 @@ describe("About", () => {
     expect(deserializedAboutView).toBeTruthy();
   });
 
+  it("reuses the model created for restore when activation follows", async () => {
+    await lumine.packages.deactivatePackage("about");
+    const main = lumine.packages.getLoadedPackage("about").mainModule;
+    const restored = main.deserializeAboutView({ uri: "lumine://about" });
+    const restoredModel = main.model;
+
+    await main.activate();
+
+    expect(main.model).toBe(restoredModel);
+    expect(main.model.views.aboutView).toBe(restored);
+    main.deactivate();
+  });
+
   it("uses the mode-appropriate Lumine logo", async () => {
     await lumine.workspace.open("lumine://about");
     jasmine.attachToDOM(workspaceElement);
