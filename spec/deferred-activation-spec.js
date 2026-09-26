@@ -37,4 +37,30 @@ describe("about bootstrap activation", () => {
     expect(item.getURI()).toBe("lumine://about");
     expect(pack.mainActivated).toBe(true);
   });
+
+  it("defers the default About view beyond the synchronous activation bootstrap", async () => {
+    await lumine.packages.deactivatePackage(PACKAGE_NAME);
+    lumine.config.set("about.showOnStartup", true);
+
+    const activation = lumine.packages.activatePackage(PACKAGE_NAME);
+    const main = lumine.packages.getLoadedPackage(PACKAGE_NAME).mainModule;
+
+    expect(main.model).toBeUndefined();
+
+    await activation;
+    expect(main.model).toBeDefined();
+    expect(lumine.workspace.getActivePaneItem().getURI()).toBe("lumine://about");
+  });
+
+  it("cancels a deferred startup view when deactivated first", async () => {
+    await lumine.packages.deactivatePackage(PACKAGE_NAME);
+    lumine.config.set("about.showOnStartup", true);
+
+    const activation = lumine.packages.activatePackage(PACKAGE_NAME);
+    const main = lumine.packages.getLoadedPackage(PACKAGE_NAME).mainModule;
+    const deactivation = lumine.packages.deactivatePackage(PACKAGE_NAME);
+
+    await Promise.all([activation, deactivation]);
+    expect(main.model).toBeUndefined();
+  });
 });
