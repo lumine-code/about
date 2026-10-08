@@ -2,6 +2,8 @@
 
 View useful information about your Lumine installation.
 
+Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/about`).
+
 ## Features
 
 - **Installation details**: shows the current Lumine version, license, and Terms of Use.
