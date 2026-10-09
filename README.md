@@ -6,7 +6,7 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/a
 
 ## Features
 
-- **Installation details**: shows the current Lumine version, license, and Terms of Use.
+- **Installation details**: shows the current Lumine version and license.
 - **Cross-platform view**: opens a consistent About view on every supported platform.
 - **Release notes**: links out to the release notes for the running version.
 - **Startup control**: opens on startup by default and can be disabled from the About pane.
