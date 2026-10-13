@@ -2,10 +2,19 @@
   "title": "about",
   "description": "Open About, focus a version copy control, and view the pane in both light and dark themes.",
   "recordedOn": "2026-10-13",
-  "sourceRevision": "7d4a2f565a69c46816213008c08a4bba066ca3ee",
-  "gif": "demo.gif",
-  "poster": "demo.webp",
-  "width": 1000,
-  "height": 717,
-  "frames": 4
+  "sourceRevision": "e4ad22e404a49302576061e5f5b3ce936b2fc9fe",
+  "images": [
+    {
+      "file": "demo.png",
+      "label": "Open About, focus a version copy control, and view the pane in both light and dark themes.",
+      "width": 1200,
+      "height": 860
+    },
+    {
+      "file": "demo-2.png",
+      "label": "Open About, focus a version copy control, and view the pane in both light and dark themes.",
+      "width": 1200,
+      "height": 860
+    }
+  ]
 }

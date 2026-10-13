@@ -13,7 +13,9 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/a
 
 ## Demo
 
-![Open About, focus a version copy control, and view the pane in both light and dark themes.](.github/demo.gif)
+![Open About, focus a version copy control, and view the pane in both light and dark themes.](.github/demo.png)
+
+![Open About, focus a version copy control, and view the pane in both light and dark themes.](.github/demo-2.png)
 
 ## Installation
 
