@@ -11,8 +11,6 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/a
 - **Release notes**: links out to the release notes for the running version.
 - **Startup control**: opens on startup by default and can be disabled from the About pane.
 
-## Demo
-
 ![Open About, focus a version copy control, and view the pane in both light and dark themes.](.github/demo.png)
 
 ![Open About, focus a version copy control, and view the pane in both light and dark themes.](.github/demo-2.png)
