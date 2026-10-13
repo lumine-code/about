@@ -1,223 +1,221 @@
 .about {
-  /* Package-local palette (was styles/variables.less) */
-  --lumine-gold: #cf9723;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  -webkit-user-select: none;
-  cursor: default;
+  --about-accent: #cf9723;
+  --about-gutter: clamp(12px, 3cqi, 40px);
+  --about-padding: clamp(18px, 3cqi, 40px);
+  container: about / inline-size;
   overflow: auto;
-  text-align: center;
-  font-size: 1.25em;
-  line-height: 1.4;
-  padding: 4em 2em;
+  min-width: 0;
   color: var(--text-color);
-  background-color: var(--base-background-color);
+  background: var(--base-background-color);
+  font-family: var(--ui-font-family);
+  font-size: max(14px, var(--ui-font-size));
+  line-height: 1.5;
+  cursor: default;
 
-  button {
-    cursor: default;
+  .about-sheet {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    &::before {
+      position: absolute;
+      inset: 0 var(--about-gutter);
+      border-inline: 1px solid var(--base-border-color);
+      content: "";
+      pointer-events: none;
+    }
   }
-
-  a:focus {
-    /* Don't use Bootstrap default here */
-    color: inherit;
+  .about-masthead,
+  .about-section-heading,
+  .about-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    padding: 18px calc(var(--about-gutter) + var(--about-padding));
+    border-bottom: 1px solid var(--base-border-color);
   }
-
-  img,
-  a {
-    -webkit-user-drag: none;
+  .about-eyebrow,
+  .about-version-name {
+    color: var(--text-color-subtle);
+    font-size: 0.86em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
-
-  .min-width-min-content {
-    min-width: min-content;
-  }
-
-  /* used to group different elements */
-  .group-start {
-    margin-top: 3em;
-  }
-
-  /* Flexible spacers split the free space 1:2, placing the content block's
-     center at one-third of the pane height. They collapse to zero when the
-     content overflows, so nothing is ever clipped. */
-  &::before {
-    content: "";
-    flex: 1;
-  }
-  &::after {
-    content: "";
-    flex: 2;
-  }
-}
-
-.about-container {
-  width: 100%;
-  max-width: 600px;
-
-  .icon::before {
-    margin-right: 0;
-  }
-}
-
-/* Header -------------------------------- */
-
-.about-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.about-homepage {
-  display: inline-block;
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.03);
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
-}
-
-.about-logo {
-  display: block;
-  width: 100%;
-  max-width: 128px;
-  margin: 0 auto;
-  filter: drop-shadow(0 4px 12px rgb(from #000 r g b / 30%));
-}
-
-.about-title {
-  margin: 0.4em 0 0.1em;
-  font-size: 3.4em;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--text-color-highlight);
-}
-
-.about-subtitle {
-  margin: 1em auto;
-  color: var(--text-color-subtle);
-  font-size: 1.1em;
-}
-
-.about-header-info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1em;
-  width: 100%;
-  max-width: 30em;
-  margin-top: 2em;
-}
-
-.about-version-container {
-  display: flex;
-  align-items: center;
-  padding: 0.25em 1em;
-  border: 1px solid var(--base-border-color);
-  border-radius: 2em;
-  background-color: var(--background-color-highlight);
-  white-space: nowrap;
-  vertical-align: middle;
-  transition:
-    color 0.2s,
-    border-color 0.2s;
-
-  &:hover {
-    color: var(--text-color-highlight);
-    border-color: var(--lumine-gold);
-  }
-  &:active {
-    color: hsl(from var(--text-color) h s calc(l + 30));
-  }
-}
-
-/* Center the version text in the space between the left edge and the copy icon,
-   which stays pinned on the right. */
-.about-version {
-  flex: 1;
-  text-align: center;
-}
-
-/* An icon-only span still lays out a line box from its own font, so the flex
-   row centres a box several pixels taller than the glyph. Collapsing that
-   strut makes the item exactly the glyph; the raise then corrects what
-   `align-items: center` cannot know — it centres each item's box, and a text
-   box carries descender space its cap centre sits above. Both measured. */
-.about-copy-version {
-  margin-left: 0.5em;
-  line-height: 0;
-
-  &::before {
-    translate: 0 -1.5px;
-  }
-}
-
-/* Actions -------------------------------- */
-
-.about-actions {
-  .btn-group {
-    display: inline-flex;
-    justify-content: center;
-  }
-
-  .btn {
-    min-width: 7em;
-  }
-}
-
-.about-updates-item {
-  display: block;
-}
-
-.about-updates-label {
-  color: var(--text-color-subtle);
-  &.is-strong {
+  .about-website {
     color: var(--text-color);
   }
-}
-
-.about-startup {
-  margin-top: 1.5em;
-  color: var(--text-color-subtle);
-}
-
-.about-startup-label {
-  cursor: default;
-
-  .input-checkbox {
-    margin-right: 0.5em;
-    vertical-align: middle;
+  .about-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(140px, 24%);
+    padding-inline: var(--about-gutter);
+    border-bottom: 1px solid var(--base-border-color);
   }
-}
-
-/* Love -------------------------------- */
-
-.about-love {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75em;
-  color: var(--text-color-subtle);
-
-  /* As with the copy buttons: collapse the icon-only span's strut so the flex
-     row centres the glyph itself rather than a taller line box. */
-  .icon {
-    line-height: 0;
+  .about-intro {
+    align-self: center;
+    padding: clamp(32px, 6cqi, 72px) var(--about-padding);
+  }
+  .about-title {
+    margin: 0 0 20px;
+    color: var(--text-color-highlight);
+    font: 600 clamp(44px, 8cqi, 88px) / 1 var(--ui-font-family);
+    letter-spacing: -0.055em;
+  }
+  .about-subtitle {
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+  .about-homepage {
+    display: grid;
+    place-items: center;
+    padding: 28px;
+    border-left: 1px solid var(--base-border-color);
+  }
+  .about-logo {
+    display: block;
+    width: clamp(80px, 12cqi, 144px);
+    height: auto;
+    max-width: 100%;
+    -webkit-user-drag: none;
+  }
+  .about-section-heading h2 {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--text-color-highlight);
+  }
+  .about-hint,
+  .about-version-detail {
+    color: var(--text-color-subtle);
+    font-size: 0.93em;
+  }
+  .about-header-info,
+  .about-actions {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-inline: var(--about-gutter);
+    border-bottom: 1px solid var(--base-border-color);
+  }
+  .about-version-container,
+  .about-action {
+    appearance: none;
+    min-width: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    padding: 22px var(--about-padding);
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    &:hover {
+      color: var(--text-color-highlight);
+      background: var(--background-color-highlight);
+    }
+    &:active {
+      background: var(--background-color-selected);
+    }
+  }
+  .about-header-info > :not(:first-child),
+  .about-actions > :not(:first-child) {
+    border-left: 1px solid var(--base-border-color);
+  }
+  .about-version-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-right: calc(var(--about-padding) + 20px);
+  }
+  .about-version {
+    font-family: var(--editor-font-family, ui-monospace, monospace);
+    overflow-wrap: anywhere;
+  }
+  .about-copy-version {
+    position: absolute;
+    right: var(--about-padding);
+    top: 22px;
     color: var(--text-color-subtle);
   }
-
-  .icon::before {
-    font-size: 1.5em;
-    translate: 0 -0.9px;
+  .about-action {
+    display: flex;
+    align-items: center;
+    min-height: 68px;
+  }
+  .about-updates-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 22px var(--about-padding);
+    overflow-wrap: anywhere;
+  }
+  .about-footer {
+    margin-top: auto;
+    color: var(--text-color-subtle);
+    border-top: 1px solid var(--base-border-color);
+    border-bottom: 0;
+  }
+  .about-resources {
+    padding-bottom: 40px;
+  }
+  .about-startup-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-weight: normal;
+    cursor: pointer;
+  }
+  .about-startup .input-checkbox {
+    flex: none;
+    margin: 0;
+  }
+  :is(a, button, input):focus-visible {
+    outline: 2px solid var(--about-accent);
+    outline-offset: -3px;
   }
 }
-
-.about-team-text {
-  text-align: center;
+@container about (width < 760px) {
+  .about .about-header-info,
+  .about .about-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .about .about-header-info > :nth-child(3),
+  .about .about-actions > :nth-child(3) {
+    border-left: 0;
+  }
+  .about .about-header-info > :nth-child(n + 3),
+  .about .about-actions > :nth-child(n + 3) {
+    border-top: 1px solid var(--base-border-color);
+  }
+}
+@container about (width < 420px) {
+  .about .about-header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .about .about-homepage {
+    grid-row: 1;
+    justify-items: start;
+    padding: 24px var(--about-padding) 0;
+    border-left: 0;
+  }
+  .about .about-intro {
+    padding-top: 24px;
+  }
+  .about .about-hint {
+    flex-basis: 100%;
+  }
+  .about .about-version-container {
+    padding-right: var(--about-padding);
+  }
+  .about .about-copy-version {
+    display: none;
+  }
 }
 .tab-bar .tab.active[data-type$="AboutView"] {
   color: var(--tab-text-color-editor);

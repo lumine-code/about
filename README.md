@@ -21,6 +21,18 @@ Commands available in `lumine-workspace`:
 
 - `about:view-release-notes`: open the release notes for the current version in your browser.
 
+## Customization
+
+The About pane follows the active UI theme and adapts to the width of its pane. Adjust its spacing or focus accent in your `styles.css`:
+
+```css
+.about {
+  --about-gutter: 24px;
+  --about-padding: 24px;
+  --about-accent: var(--text-color-info);
+}
+```
+
 ## Contributing
 
 Got ideas to make this package better, found a bug, or want to help add new features? Just drop your thoughts on GitHub. Any feedback is welcome!

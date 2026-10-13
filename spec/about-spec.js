@@ -142,6 +142,39 @@ describe("About", () => {
     });
   });
 
+  it("makes every version copy control focusable and names the version it copies", async () => {
+    const item = await lumine.workspace.open("lumine://about");
+    jasmine.attachToDOM(workspaceElement);
+    const controls = item.element.querySelectorAll(".about-version-container");
+    expect(controls.length).toBe(4);
+    for (const control of controls) {
+      expect(control.tagName).toBe("BUTTON");
+      expect(control.getAttribute("aria-label")).toContain(
+        control.querySelector(".about-version").textContent,
+      );
+      control.focus();
+      expect(document.activeElement).toBe(control);
+      control.click();
+      expect(lumine.clipboard.read()).toBe(control.querySelector(".about-version").textContent);
+    }
+  });
+
+  it("keeps the full view within a narrow split pane", async () => {
+    const item = await lumine.workspace.open("lumine://about");
+    const root = item.element;
+    root.style.cssText = "width: 320px; height: 700px; flex: none;";
+    jasmine.attachToDOM(root);
+    expect(root.getBoundingClientRect().width).toBe(320);
+    expect(root.scrollWidth).toBeLessThanOrEqual(root.clientWidth);
+    expect(
+      getComputedStyle(root.querySelector(".about-header-info")).gridTemplateColumns.split(" ")
+        .length,
+    ).toBe(2);
+    expect(
+      root.querySelector(".about-startup-label").getBoundingClientRect().right,
+    ).toBeLessThanOrEqual(root.getBoundingClientRect().right);
+  });
+
   describe("when the Electron version number is clicked", () => {
     it("copies the version number to the clipboard", async () => {
       await lumine.workspace.open("lumine://about");
