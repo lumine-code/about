@@ -1,0 +1,27 @@
+{
+  "menu": [
+    {
+      "label": "Help",
+      "submenu": [
+        {
+          "label": "Release Notes",
+          "command": "about:view-release-notes"
+        }
+      ]
+    },
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "About",
+          "submenu": [
+            {
+              "label": "Release Notes",
+              "command": "about:view-release-notes"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
