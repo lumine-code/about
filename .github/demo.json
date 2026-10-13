@@ -2,7 +2,9 @@
   "title": "about",
   "description": "Open About, focus a version copy control, and view the pane in both light and dark themes.",
   "recordedOn": "2026-10-13",
-  "sourceRevision": "c0b3eb543ac56b3a017b7f2d432ce521f2be48e5",
+  "sourceRevision": "ed7492430422dae602f22ec1e92777846ba171b9",
+  "mode": "normal",
+  "fontSettings": "default",
   "images": [
     {
       "file": "demo.png",
