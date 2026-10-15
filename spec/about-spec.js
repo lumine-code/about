@@ -265,6 +265,23 @@ describe("About", () => {
     }
   });
 
+  it("shares one border with the footer in short panes and retains the gap in tall panes", async () => {
+    const item = await lumine.workspace.open("lumine://about");
+    const root = item.element;
+    jasmine.attachToDOM(root);
+    for (const width of [1200, 680]) {
+      root.style.cssText = `width: ${width}px; height: 350px; flex: none;`;
+      const lastRow = root.querySelector(".about-introduction-actions").getBoundingClientRect();
+      const footer = root.querySelector(".about-footer").getBoundingClientRect();
+      expect(footer.top).toBeCloseTo(lastRow.bottom - 1, 3);
+    }
+    root.style.cssText = "width: 1200px; height: 1800px; flex: none;";
+    const lastRow = root.querySelector(".about-introduction-actions").getBoundingClientRect();
+    const footer = root.querySelector(".about-footer").getBoundingClientRect();
+    expect(footer.top).toBeGreaterThan(lastRow.bottom + 20);
+    expect(footer.bottom).toBeCloseTo(root.getBoundingClientRect().bottom, 3);
+  });
+
   describe("when the Electron version number is clicked", () => {
     it("copies the version number to the clipboard", async () => {
       await lumine.workspace.open("lumine://about");
@@ -309,7 +326,9 @@ describe("About", () => {
 
       let aboutElement = workspaceElement.querySelector(".about");
       let updateContainer = aboutElement.querySelector(".about-update-action-button");
-      expect(updateContainer.innerText).toBe("Check for updates");
+      expect(updateContainer.querySelector(".about-resource-label").textContent).toBe(
+        "Check for updates",
+      );
     });
   });
 });

@@ -91,6 +91,10 @@
     padding-inline: var(--about-gutter);
     border-bottom: 1px solid var(--base-border-color);
   }
+  .about-introduction {
+    /* Share the last rule with the footer when its automatic gap reaches zero. */
+    margin-bottom: -1px;
+  }
   .about-introduction-action {
     position: relative;
     display: flex;
@@ -181,7 +185,13 @@
   .about-action {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     min-height: 68px;
+  }
+  .about-resource-arrow {
+    flex: none;
+    color: var(--about-accent);
   }
   .about-updates-item {
     display: flex;
