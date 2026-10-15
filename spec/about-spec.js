@@ -242,7 +242,13 @@ describe("About", () => {
     expect(
       getComputedStyle(root.querySelector(".about-header-info")).gridTemplateColumns.split(" ")
         .length,
-    ).toBe(2);
+    ).toBe(1);
+    expect(
+      getComputedStyle(root.querySelector(".about-actions")).gridTemplateColumns.split(" ").length,
+    ).toBe(1);
+    for (const cell of root.querySelectorAll(".about-grid > *")) {
+      expect(getComputedStyle(cell).borderLeftWidth).toBe("0px");
+    }
     expect(
       root.querySelector(".about-startup-label").getBoundingClientRect().right,
     ).toBeLessThanOrEqual(root.getBoundingClientRect().right);
@@ -280,6 +286,39 @@ describe("About", () => {
     const footer = root.querySelector(".about-footer").getBoundingClientRect();
     expect(footer.top).toBeGreaterThan(lastRow.bottom + 20);
     expect(footer.bottom).toBeCloseTo(root.getBoundingClientRect().bottom, 3);
+  });
+
+  it("uses the same labels, spacing and first-line icons across all tile groups", async () => {
+    const item = await lumine.workspace.open("lumine://about");
+    const root = item.element;
+    root.style.cssText = "width: 1200px; height: 1000px; flex: none;";
+    jasmine.attachToDOM(root);
+    const selectors = [
+      [".about-version-container", ".about-version-name", ".about-copy-version"],
+      [".about-action", ".about-resource-label", ".about-resource-arrow"],
+      [".about-introduction-action", ".about-introduction-title", ".about-introduction-arrow"],
+    ];
+    const treatments = selectors.map(([tileSelector, labelSelector, iconSelector]) => {
+      const tile = root.querySelector(tileSelector);
+      const label = tile.querySelector(labelSelector);
+      const icon = tile.querySelector(iconSelector);
+      const labelStyle = getComputedStyle(label);
+      const tileStyle = getComputedStyle(tile);
+      const labelRect = label.getBoundingClientRect();
+      const iconRect = icon.getBoundingClientRect();
+      expect(Math.abs(labelRect.top - iconRect.top)).toBeLessThan(1);
+      return [
+        labelStyle.fontSize,
+        labelStyle.fontWeight,
+        labelStyle.color,
+        tileStyle.paddingTop,
+        tileStyle.paddingBottom,
+        tileStyle.columnGap,
+        getComputedStyle(icon).color,
+      ];
+    });
+    expect(treatments[1]).toEqual(treatments[0]);
+    expect(treatments[2]).toEqual(treatments[0]);
   });
 
   describe("when the Electron version number is clicked", () => {
