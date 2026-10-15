@@ -2,7 +2,7 @@
 module.exports = {
   version: 1,
   dependencies: [],
-  viewport: { width: 1200, height: 1050 },
+  viewport: { width: 1200, height: 1280 },
   async before() {},
   async prepare(context) {
     const { state, open } = context;
@@ -12,12 +12,11 @@ module.exports = {
     {
       id: "scene-1",
       file: "demo.png",
-      caption: "Start with projects, commands, packages and themes from the About introduction.",
+      caption: "Start working and personalize the editor with the About quick actions.",
       timeout: 60000,
       async run(context) {
         const { lumine, state } = context;
         {
-          lumine.config.set("about.showIntroduction", true);
           await lumine.workspace.open("lumine://about");
           await lumine.workspace.paneForItem(state.editor).destroyItem(state.editor, true);
           if (!document.querySelector(".about-version-container"))
@@ -26,7 +25,7 @@ module.exports = {
       },
       ready() {
         return Boolean(
-          document.querySelectorAll(".about-introduction-action").length === 4 &&
+          document.querySelectorAll(".about-introduction-action").length === 12 &&
           !document.querySelector(".about-introduction-actions").hidden,
         );
       },
@@ -34,14 +33,10 @@ module.exports = {
     {
       id: "scene-2",
       file: "demo-2.png",
-      caption: "Collapse the introduction and inspect installation details in the dark theme.",
+      caption: "Inspect versions, resources and quick actions in the dark theme.",
       timeout: 60000,
       async run(context) {
         const { lumine } = context;
-        {
-          document.querySelector(".about-introduction-toggle").click();
-          await lumine.setWindowDimensions({ width: 1200, height: 860 });
-        }
         {
           lumine.config.set("theme.mode", "dark");
           await new Promise((resolve) => setTimeout(resolve, 900));
@@ -49,7 +44,7 @@ module.exports = {
       },
       ready() {
         return Boolean(
-          document.querySelector(".about-introduction-actions")?.hidden &&
+          document.querySelectorAll(".about-introduction-action").length === 12 &&
           lumine.config.get("theme.mode") === "dark",
         );
       },

@@ -25,8 +25,6 @@
       pointer-events: none;
     }
   }
-  .about-masthead,
-  .about-section-heading,
   .about-footer {
     display: flex;
     align-items: center;
@@ -36,15 +34,11 @@
     padding: 18px calc(var(--about-gutter) + var(--about-padding));
     border-bottom: 1px solid var(--base-border-color);
   }
-  .about-eyebrow,
   .about-version-name {
     color: var(--text-color-subtle);
     font-size: 0.86em;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-  }
-  .about-website {
-    color: var(--text-color);
   }
   .about-header {
     display: grid;
@@ -81,43 +75,21 @@
     max-width: 100%;
     -webkit-user-drag: none;
   }
-  .about-section-heading h2 {
-    margin: 0;
-    font-size: 1em;
-    font-weight: 600;
-    color: var(--text-color-highlight);
-  }
   .about-hint,
   .about-version-detail {
     color: var(--text-color-subtle);
     font-size: 0.93em;
   }
-  .about-introduction-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 4px 0;
-    border: 0;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-  }
-  .about-introduction-chevron {
-    width: 12px;
-    color: var(--text-color-subtle);
-  }
-  .about-first-steps {
-    color: var(--text-color);
+  .about-separator {
+    height: 20px;
+    flex: none;
+    border-bottom: 1px solid var(--base-border-color);
   }
   .about-introduction-actions {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     padding-inline: var(--about-gutter);
     border-bottom: 1px solid var(--base-border-color);
-    &[hidden] {
-      display: none;
-    }
   }
   .about-introduction-action {
     position: relative;
@@ -223,9 +195,6 @@
     color: var(--text-color-subtle);
     border-top: 1px solid var(--base-border-color);
     border-bottom: 0;
-  }
-  .about-resources {
-    padding-bottom: 40px;
   }
   .about-startup-label {
     display: flex;

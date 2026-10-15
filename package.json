@@ -32,12 +32,6 @@
     "format:check": "prettier --check ."
   },
   "configSchema": {
-    "showIntroduction": {
-      "title": "Show Introduction",
-      "description": "Expand the first steps and quick actions in the About pane.",
-      "type": "boolean",
-      "default": true
-    },
     "showOnStartup": {
       "title": "Show About On Startup",
       "description": "Show the About pane when opening a new Lumine window.",
