@@ -2,6 +2,7 @@
   --about-accent: #cf9723;
   --about-gutter: clamp(12px, 3cqi, 40px);
   --about-padding: clamp(18px, 3cqi, 40px);
+  --about-separator-height: 20px;
   container: about / inline-size;
   overflow: auto;
   min-width: 0;
@@ -19,7 +20,8 @@
     min-height: 100%;
     &::before {
       position: absolute;
-      inset: 0 var(--about-gutter);
+      /* Start the frame below the opening spacer, clear of the active tab. */
+      inset: var(--about-separator-height) var(--about-gutter) 0;
       border-inline: 1px solid var(--base-border-color);
       content: "";
       pointer-events: none;
@@ -81,7 +83,7 @@
     font-size: 0.93em;
   }
   .about-separator {
-    height: 20px;
+    height: var(--about-separator-height);
     flex: none;
     border-bottom: 1px solid var(--base-border-color);
   }
