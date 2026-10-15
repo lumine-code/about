@@ -1,46 +1,47 @@
 {
   "title": "about",
-  "description": "Open About, focus a version copy control, and view the pane in both light and dark themes.",
-  "recordedOn": "2026-10-14",
-  "sourceRevision": "8586775d64eb900448d1b2938f53726dccb8e6e8",
-  "themeSourceRevision": "14a69683b0e3238e2bc128fbfae3866c1e4ee9c6",
+  "description": "Start with projects, commands, packages and themes from the About introduction.",
+  "recordedOn": "2026-10-15",
+  "sourceRevision": "9701b068e33e2d163076a7551e0254c202945ea6",
+  "themeSourceRevision": "828c35ac1816466699effa6f7cf7eedccc930ff9",
   "mode": "normal",
   "fontSettings": "default",
   "scenario": "demo.js",
-  "recipeHash": "565bde8baabd0582ae9c4c5c7a08b88125576739854f0fa9ac4a0ce36d321060",
+  "recipeHash": "c55bc22b77850eab0de350a1623eaa9fa249aef6237b7bd0396584eea02dfa34",
   "environment": {
     "platform": "win32",
     "arch": "x64",
-    "electron": "44.7.0",
-    "chrome": "152.0.7977.130",
+    "electron": "44.7.1",
+    "chrome": "152.0.7977.149",
     "devicePixelRatio": 1,
     "locale": "en-GB",
     "fontFamily": "Fira Code, Menlo, DejaVu Sans Mono, Consolas, monospace",
     "fontSize": 14,
     "themes": ["one-day-syntax", "one-day-ui"]
   },
-  "viewport": { "width": 1200, "height": 860 },
+  "viewport": { "width": 1200, "height": 1050 },
   "cornerRadius": 10,
+  "privacy": { "version": 1, "location": "neutral", "textChecked": true },
   "sources": {
     "editor": {
-      "revision": "385bd1b3ac2db600f1c7e077474d9da4d6deebc4",
-      "dirty": true,
-      "workingTreeHash": "0fa935626a1db13861a0b78ef5c3d890e0a6bff80b25da2fac6e9889910defe0"
+      "revision": "8234b6c73c9138b2b7dbc695c3344a17111f678d",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "package": {
-      "revision": "8586775d64eb900448d1b2938f53726dccb8e6e8",
+      "revision": "9701b068e33e2d163076a7551e0254c202945ea6",
       "dirty": true,
-      "workingTreeHash": "50d93d795177b0ba61b79f9e69bea24577a9c83960397c13c3be0c34e2203ce3"
+      "workingTreeHash": "3bde11739a8fd2315dc3b749b6fc9055a144d91e2c6b599241c8b46c8ae88bba"
     },
     "about": {
-      "revision": "8586775d64eb900448d1b2938f53726dccb8e6e8",
+      "revision": "9701b068e33e2d163076a7551e0254c202945ea6",
       "dirty": true,
-      "workingTreeHash": "50d93d795177b0ba61b79f9e69bea24577a9c83960397c13c3be0c34e2203ce3"
+      "workingTreeHash": "3bde11739a8fd2315dc3b749b6fc9055a144d91e2c6b599241c8b46c8ae88bba"
     },
     "one-theme": {
-      "revision": "14a69683b0e3238e2bc128fbfae3866c1e4ee9c6",
-      "dirty": true,
-      "workingTreeHash": "50ec2f83a6347dd8113870992ec4eb2be4014f3d9e12213c2f51b543f1eca793"
+      "revision": "828c35ac1816466699effa6f7cf7eedccc930ff9",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     }
   },
   "fixtures": [
@@ -52,17 +53,17 @@
   "images": [
     {
       "file": "demo.png",
-      "label": "Open About, focus a version copy control, and view the pane in both light and dark themes.",
+      "label": "Start with projects, commands, packages and themes from the About introduction.",
       "width": 1200,
-      "height": 860,
-      "sha256": "f8a4dea8834b649ce3293fee21666e6094573e00b94acf233513e2fe5ade7861"
+      "height": 1050,
+      "sha256": "51267a688630bf1229e46021f88714309f69e6518a6554f39ce13ebe4a8d2817"
     },
     {
       "file": "demo-2.png",
-      "label": "Open About, focus a version copy control, and view the pane in both light and dark themes.",
+      "label": "Collapse the introduction and inspect installation details in the dark theme.",
       "width": 1200,
       "height": 860,
-      "sha256": "3e4873dc0c2da011e0bf8aa3b791b7ca9525371a3ce638184729d1969c9d45f6"
+      "sha256": "d9d166bde4db28c0611625d4f137b730624c457a8aacb10f19a33e8c23e6798e"
     }
   ]
 }

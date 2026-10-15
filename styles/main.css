@@ -48,13 +48,13 @@
   }
   .about-header {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(140px, 24%);
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
     padding-inline: var(--about-gutter);
     border-bottom: 1px solid var(--base-border-color);
   }
   .about-intro {
     align-self: center;
-    padding: clamp(32px, 6cqi, 72px) var(--about-padding);
+    padding: clamp(28px, 4cqi, 48px) var(--about-padding);
   }
   .about-title {
     margin: 0 0 20px;
@@ -91,6 +91,70 @@
   .about-version-detail {
     color: var(--text-color-subtle);
     font-size: 0.93em;
+  }
+  .about-introduction-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+  .about-introduction-chevron {
+    width: 12px;
+    color: var(--text-color-subtle);
+  }
+  .about-first-steps {
+    color: var(--text-color);
+  }
+  .about-introduction-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-inline: var(--about-gutter);
+    border-bottom: 1px solid var(--base-border-color);
+    &[hidden] {
+      display: none;
+    }
+  }
+  .about-introduction-action {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    padding: 20px calc(var(--about-padding) + 24px) 20px var(--about-padding);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-color);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    &:nth-child(even) {
+      border-left: 1px solid var(--base-border-color);
+    }
+    &:nth-child(n + 3) {
+      border-top: 1px solid var(--base-border-color);
+    }
+    &:hover {
+      background: var(--background-color-highlight);
+    }
+  }
+  .about-introduction-title {
+    color: var(--text-color-highlight);
+    font-weight: 600;
+  }
+  .about-introduction-description {
+    color: var(--text-color-subtle);
+  }
+  .about-introduction-arrow {
+    position: absolute;
+    right: var(--about-padding);
+    top: 20px;
+    color: var(--about-accent);
   }
   .about-header-info,
   .about-actions {
@@ -181,6 +245,9 @@
   }
 }
 @container about (width < 760px) {
+  .about .about-header {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .about .about-header-info,
   .about .about-actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -215,6 +282,17 @@
   }
   .about .about-copy-version {
     display: none;
+  }
+}
+@container about (width < 600px) {
+  .about .about-introduction-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .about .about-introduction-action:nth-child(even) {
+    border-left: 0;
+  }
+  .about .about-introduction-action:not(:first-child) {
+    border-top: 1px solid var(--base-border-color);
   }
 }
 .tab-bar .tab.active[data-type$="AboutView"] {

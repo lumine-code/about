@@ -6,14 +6,15 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/a
 
 ## Features
 
+- **Introduction**: opens a project, finds commands, installs packages and changes themes from four quick actions, with a first-steps guide and a remembered collapse state.
 - **Installation details**: shows the current Lumine version and license.
 - **Cross-platform view**: opens a consistent About view on every supported platform.
 - **Release notes**: links out to the release notes for the running version.
 - **Startup control**: opens on startup by default and can be disabled from the About pane.
 
-![Open About, focus a version copy control, and view the pane in both light and dark themes.](.github/demo.png)
+![Start with projects, commands, packages and themes from the About introduction.](.github/demo.png)
 
-![Open About, focus a version copy control, and view the pane in both light and dark themes.](.github/demo-2.png)
+![Collapse the introduction and inspect installation details in the dark theme.](.github/demo-2.png)
 
 ## Installation
 

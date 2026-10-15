@@ -7,6 +7,68 @@ describe("About", () => {
     workspaceElement = lumine.views.getView(lumine.workspace);
     lumine.config.set("about.showOnStartup", false);
     await lumine.packages.activatePackage("about");
+    lumine.config.unset("about.showIntroduction");
+  });
+
+  describe("introduction", () => {
+    it("opens projects and the command palette through workspace commands", async () => {
+      const item = await lumine.workspace.open("lumine://about");
+      spyOn(lumine.commands, "dispatch");
+      const actions = item.element.querySelectorAll(".about-introduction-action");
+      expect(actions.length).toBe(4);
+      actions[0].click();
+      actions[1].click();
+      expect(lumine.commands.dispatch.calls.allArgs()).toEqual([
+        [workspaceElement, "application:open-folder"],
+        [workspaceElement, "command-palette:toggle"],
+      ]);
+    });
+
+    it("opens the package installer and themes without requesting pane splits", async () => {
+      const item = await lumine.workspace.open("lumine://about");
+      spyOn(lumine.workspace, "open").and.returnValue(Promise.resolve());
+      const actions = item.element.querySelectorAll(".about-introduction-action");
+      actions[2].click();
+      actions[3].click();
+      expect(lumine.workspace.open.calls.allArgs()).toEqual([
+        ["lumine://config/install"],
+        ["lumine://config/themes"],
+      ]);
+    });
+
+    it("remembers collapsing across reopening and follows preference changes", async () => {
+      let item = await lumine.workspace.open("lumine://about");
+      jasmine.attachToDOM(workspaceElement);
+      const button = item.element.querySelector(".about-introduction-toggle");
+      expect(button.getAttribute("aria-expanded")).toBe("true");
+      button.click();
+      await item.update({});
+      expect(lumine.config.get("about.showIntroduction")).toBe(false);
+      expect(item.element.querySelector(".about-introduction-actions")).not.toBeVisible();
+      expect(button.getAttribute("aria-expanded")).toBe("false");
+      await lumine.workspace.paneForItem(item).destroyItem(item);
+      item = await lumine.workspace.open("lumine://about");
+      expect(item.element.querySelector(".about-introduction-actions").hidden).toBe(true);
+      lumine.config.set("about.showIntroduction", true);
+      await item.update({});
+      expect(item.element.querySelector(".about-introduction-actions")).toBeVisible();
+    });
+
+    it("explains disabled packages and releases its configuration observer", async () => {
+      const item = await lumine.workspace.open("lumine://about");
+      spyOn(lumine.packages, "isPackageDisabled").and.callFake(
+        (name) => name === "command-palette",
+      );
+      spyOn(lumine.notifications, "addWarning");
+      spyOn(lumine.commands, "dispatch");
+      item.element.querySelectorAll(".about-introduction-action")[1].click();
+      expect(lumine.notifications.addWarning).toHaveBeenCalled();
+      expect(lumine.commands.dispatch).not.toHaveBeenCalled();
+      await lumine.workspace.paneForItem(item).destroyItem(item);
+      spyOn(item, "update");
+      lumine.config.set("about.showIntroduction", false);
+      expect(item.update).not.toHaveBeenCalled();
+    });
   });
 
   describe("startup", () => {
@@ -167,12 +229,34 @@ describe("About", () => {
     expect(root.getBoundingClientRect().width).toBe(320);
     expect(root.scrollWidth).toBeLessThanOrEqual(root.clientWidth);
     expect(
+      getComputedStyle(root.querySelector(".about-introduction-actions")).gridTemplateColumns.split(
+        " ",
+      ).length,
+    ).toBe(1);
+    expect(
       getComputedStyle(root.querySelector(".about-header-info")).gridTemplateColumns.split(" ")
         .length,
     ).toBe(2);
     expect(
       root.querySelector(".about-startup-label").getBoundingClientRect().right,
     ).toBeLessThanOrEqual(root.getBoundingClientRect().right);
+  });
+
+  it("aligns the logo divider with the version and resource columns", async () => {
+    const item = await lumine.workspace.open("lumine://about");
+    const root = item.element;
+    jasmine.attachToDOM(root);
+    for (const [width, column] of [
+      [1200, 3],
+      [680, 1],
+    ]) {
+      root.style.cssText = `width: ${width}px; height: 1000px; flex: none;`;
+      const logo = root.querySelector(".about-homepage").getBoundingClientRect().left;
+      for (const selector of [".about-version-container", ".about-actions > *"]) {
+        const cell = root.querySelectorAll(selector)[column].getBoundingClientRect().left;
+        expect(Math.abs(logo - cell)).toBeLessThan(1);
+      }
+    }
   });
 
   describe("when the Electron version number is clicked", () => {
