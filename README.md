@@ -12,9 +12,9 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/a
 - **Release notes**: links out to the release notes for the running version.
 - **Startup control**: opens on startup by default and can be disabled from the About pane.
 
-![Start with projects, commands, packages and themes from the About introduction.](.github/demo.png)
+![Start working and personalize the editor with the About quick actions.](.github/demo.png)
 
-![Collapse the introduction and inspect installation details in the dark theme.](.github/demo-2.png)
+![Inspect versions, resources and quick actions in the dark theme.](.github/demo-2.png)
 
 ## Installation
 

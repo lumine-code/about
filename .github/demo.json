@@ -1,13 +1,13 @@
 {
   "title": "about",
-  "description": "Start with projects, commands, packages and themes from the About introduction.",
+  "description": "Start working and personalize the editor with the About quick actions.",
   "recordedOn": "2026-10-15",
-  "sourceRevision": "9701b068e33e2d163076a7551e0254c202945ea6",
+  "sourceRevision": "3cda51e234b26fd0e9f42595566c12319dcb7fa4",
   "themeSourceRevision": "828c35ac1816466699effa6f7cf7eedccc930ff9",
   "mode": "normal",
   "fontSettings": "default",
   "scenario": "demo.js",
-  "recipeHash": "c55bc22b77850eab0de350a1623eaa9fa249aef6237b7bd0396584eea02dfa34",
+  "recipeHash": "50f727ba7c7944df90c071658477c8fa0c583c09afbbf76ec3415b7463290327",
   "environment": {
     "platform": "win32",
     "arch": "x64",
@@ -19,24 +19,24 @@
     "fontSize": 14,
     "themes": ["one-day-syntax", "one-day-ui"]
   },
-  "viewport": { "width": 1200, "height": 1050 },
+  "viewport": { "width": 1200, "height": 1280 },
   "cornerRadius": 10,
   "privacy": { "version": 1, "location": "neutral", "textChecked": true },
   "sources": {
     "editor": {
-      "revision": "8234b6c73c9138b2b7dbc695c3344a17111f678d",
+      "revision": "f24460a78a354f4ca234c008ed90208fc4f724c0",
       "dirty": false,
       "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "package": {
-      "revision": "9701b068e33e2d163076a7551e0254c202945ea6",
-      "dirty": true,
-      "workingTreeHash": "3bde11739a8fd2315dc3b749b6fc9055a144d91e2c6b599241c8b46c8ae88bba"
+      "revision": "3cda51e234b26fd0e9f42595566c12319dcb7fa4",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "about": {
-      "revision": "9701b068e33e2d163076a7551e0254c202945ea6",
-      "dirty": true,
-      "workingTreeHash": "3bde11739a8fd2315dc3b749b6fc9055a144d91e2c6b599241c8b46c8ae88bba"
+      "revision": "3cda51e234b26fd0e9f42595566c12319dcb7fa4",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "one-theme": {
       "revision": "828c35ac1816466699effa6f7cf7eedccc930ff9",
@@ -53,17 +53,17 @@
   "images": [
     {
       "file": "demo.png",
-      "label": "Start with projects, commands, packages and themes from the About introduction.",
+      "label": "Start working and personalize the editor with the About quick actions.",
       "width": 1200,
-      "height": 1050,
-      "sha256": "51267a688630bf1229e46021f88714309f69e6518a6554f39ce13ebe4a8d2817"
+      "height": 1280,
+      "sha256": "1708ff1a1dcfdbd095daf10860b147b52eb7347e1e9684dd4c15b17b8324448c"
     },
     {
       "file": "demo-2.png",
-      "label": "Collapse the introduction and inspect installation details in the dark theme.",
+      "label": "Inspect versions, resources and quick actions in the dark theme.",
       "width": 1200,
-      "height": 860,
-      "sha256": "d9d166bde4db28c0611625d4f137b730624c457a8aacb10f19a33e8c23e6798e"
+      "height": 1280,
+      "sha256": "ce5e27e97f1379ba3ae80313ebb7cf0c0d4eb050e0f296bb71f05cf493e80c40"
     }
   ]
 }
