@@ -217,7 +217,3 @@
     border-left: 0;
   }
 }
-.tab-bar .tab.active[data-type$="AboutView"] {
-  color: var(--tab-text-color-editor);
-  background-color: var(--tab-background-color-editor);
-}
