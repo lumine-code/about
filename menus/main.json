@@ -1,13 +1,13 @@
 {
   "menu": [
     {
-      "label": "Help",
+      "label": "App",
       "submenu": [
         {
           "label": "Release Notes",
           "command": "about:view-release-notes",
           "group": "updates",
-          "order": 10
+          "order": 20
         }
       ]
     },
